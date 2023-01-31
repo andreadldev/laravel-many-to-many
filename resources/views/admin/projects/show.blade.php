@@ -16,7 +16,13 @@
         <?php 
             if ($project->type?->name=='empty') {
                 $project->type->name = 'Altro';
-            } else echo ucfirst($project->type?->name);
+            } else echo '<div>'.ucfirst($project->type?->name).'</div>';
+            // ----------------------------------
+            if ($project->technologies) {
+                foreach ($project->technologies as $key => $technology) {
+                    echo '<span class="me-2">'.$project->technologies[$key]->name.'</span>';
+                }
+            }
         ?>
     </h6>
     <small>{{ substr($project->created_at, 0, -9)}}</small>
