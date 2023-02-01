@@ -46,13 +46,7 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        $request->validate([
-            'type_id' => 'nullable|exists:types,id',
-            'name' => 'required|string|max:150',
-            'description' => 'required|string|max:255',
-            'image' => 'nullable|image|max:2048',
-            'technologies' => 'nullable|exists:technologies,id'
-        ]);
+        $data = $request->validated();
         $data = $request->all();
         $new_project = new Project();
         $new_project->type_id = $data['type_id'];
